@@ -1,4 +1,5 @@
 <?php
+use App\app\Database;
 require('../vendor/autoload.php');
 
 
@@ -8,10 +9,14 @@ if (isset($_GET['p'])) {
     $p = 'home';
 }
 
+//initilisations  d'objet 
+
+$db = new Database('testdb');
+
 ob_start();
 if ($p === 'home') {
     require('../pages/home.php');
-} elseif ($p === 'single') {
+} elseif ($p === 'article') {
     require('../pages/single.php');
 }
 $content = ob_get_clean();
