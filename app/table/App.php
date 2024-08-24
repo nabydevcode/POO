@@ -1,5 +1,5 @@
 <?php
-namespace App\app\Table;
+namespace App\app\table;
 use App\app\Database;
 
 class App

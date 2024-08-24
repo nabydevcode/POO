@@ -1,8 +1,10 @@
 <?php
 
-namespace App\app\Table;
+namespace App\app\table;
 
-class Articles
+use App\app\table\General;
+
+class Articles extends General
 {
     public int $id;
     public string $titre;

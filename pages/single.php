@@ -2,7 +2,6 @@
 use App\app\Table\Articles;
 $articles = Articles::getLastarticle(); ?>
 <div class="container">
-
     <h1> Bienvenue sur la page single </h1>
     <h3>
         <?= $articles->titre ?>
