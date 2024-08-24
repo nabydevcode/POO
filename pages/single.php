@@ -1,17 +1,23 @@
 <?php
-
-$post = $db->prepare('SELECT * FROM post     WHERE id=?', [$_GET['id']], 'App\app\table\Articles', true);
-
-?>
+use App\app\Table\Articles;
+$articles = Articles::getLastarticle(); ?>
 <div class="container">
+
     <h1> Bienvenue sur la page single </h1>
-
-
     <h3>
-        <?= $post->titre ?>
+        <?= $articles->titre ?>
+    </h3>
+    <h3>
+        <?= $articles->categorie ?>
     </h3>
     <p>
-        <?= $post->message ?>
+        <?= $articles->message ?>
     </p>
     <a href="index.php?p=home"> home </a>
+
+</div>
+
+
+
+
 </div>

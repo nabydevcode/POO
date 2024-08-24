@@ -7,6 +7,9 @@ class Articles
     public int $id;
     public string $titre;
     public string $message;
+    public $categorie;
+    public $category_id;
+
 
     public function getURL()
     {
@@ -15,7 +18,7 @@ class Articles
     public function getExtrait()
     {
         $html = '<p>' . substr($this->message, 0, 100) . '<p>';
-        $html .= '<p> . <a href="' . $this->getURL() . '"> Voir la suite </a><p>';
+        $html .= '<p> . <a href="' . $this->getURL() . '"> Voir la suite ...</a><p>';
         return $html;
     }
 

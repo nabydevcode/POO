@@ -9,9 +9,6 @@ if (isset($_GET['p'])) {
     $p = 'home';
 }
 
-//initilisations  d'objet 
-
-$db = new Database('testdb');
 
 ob_start();
 if ($p === 'home') {
