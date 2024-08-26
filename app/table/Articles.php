@@ -23,5 +23,9 @@ class Articles extends General
         $html .= '<p> . <a href="' . $this->getURL() . '"> Voir la suite ...</a><p>';
         return $html;
     }
+    public static function articleBycategori($artile)
+    {
+        return App::getDB()->prepare('SELECT post.id,post.titre, post.message, categories.name as categorie FROM post LEFT JOIN categories on category_id=categories.id WHERE category_id=? ', [$_GET['id']], get_called_class(), false);
+    }
 
 }

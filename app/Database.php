@@ -26,10 +26,15 @@ class Database
         }
         return $this->pdo;
     }
-    public function query($statement, $classname)
+    public function query($statement, $classname, $one = false)
     {
-        $req = $this->getPDO()->query($statement);
-        $datas = $req->fetchAll(PDO::FETCH_CLASS, $classname);
+        $db = $this->getPDO()->query($statement);
+        $db->setFetchMode(PDO::FETCH_CLASS, $classname);
+        if ($one) {
+            $datas = $db->fetch();
+        } else {
+            $datas = $db->fetchAll();
+        }
         return $datas;
     }
     public function prepare($statement, $attributes, $class_name, $one = false)

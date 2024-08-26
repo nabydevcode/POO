@@ -12,7 +12,7 @@ $db = App::getDB();
     <ul>
         <?php foreach (Articles::getLastarticle() as $post): ?>
 
-            <div class="row">
+            <div class="row ">
                 <div class="col-sm-8">
 
                     <h2> <a href="<?php $post->getURL() ?>">

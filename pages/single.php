@@ -1,6 +1,10 @@
 <?php
 use App\app\Table\Articles;
-$articles = Articles::getLastarticle(); ?>
+
+$articles = Articles::getLastarticle();
+
+?>
+
 <div class="container">
     <h1> Bienvenue sur la page single </h1>
     <h3>
@@ -15,8 +19,5 @@ $articles = Articles::getLastarticle(); ?>
     <a href="index.php?p=home"> home </a>
 
 </div>
-
-
-
 
 </div>
