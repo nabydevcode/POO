@@ -6,6 +6,10 @@ use App\app\Table\Categorie;
 require('../vendor/autoload.php');
 $db = App::getDB();
 $ar = new Articles();
+
+
+
+
 ?>
 <div class="container">
     <h1> je suis sur home page </h1>

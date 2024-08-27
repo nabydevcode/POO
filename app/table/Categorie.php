@@ -1,6 +1,5 @@
 <?php
 namespace App\app\Table;
-use App\app\Table\Articles;
 
 class Categorie extends General
 {
@@ -8,9 +7,10 @@ class Categorie extends General
     public string $name;
     public static $table = 'categories';
 
-    public function getUrl()
+
+    public function getUrl(): string
     {
-        return 'index.php?p=categorie&id=' . $this->id;
+        return "index.php?p=categorie&id=" . $this->id;
     }
 
 }
