@@ -1,5 +1,4 @@
 <?php
-use App\app\Database;
 require('../vendor/autoload.php');
 
 

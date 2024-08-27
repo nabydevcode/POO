@@ -3,6 +3,9 @@
 namespace App\app\table;
 
 use App\app\table\General;
+use App\app\Table\Categorie;
+
+
 
 class Articles extends General
 {
@@ -10,22 +13,43 @@ class Articles extends General
     public string $titre;
     public string $message;
     public $categorie;
-    public $category_id;
+    public int $category_id;
+    public static $table = "post";
 
 
-    public function getURL()
+
+
+    public function getUrl(): string
     {
         return 'index.php?p=article&id=' . $this->id;
     }
-    public function getExtrait()
+
+    public function getExtrait(): string
     {
         $html = '<p>' . substr($this->message, 0, 100) . '<p>';
-        $html .= '<p> . <a href="' . $this->getURL() . '"> Voir la suite ...</a><p>';
+        $html .= '<p><a href="' . $this->getUrl() . '"> Voir la suite ...</a></p>';
         return $html;
     }
-    public static function articleBycategori($artile)
-    {
-        return App::getDB()->prepare('SELECT post.id,post.titre, post.message, categories.name as categorie FROM post LEFT JOIN categories on category_id=categories.id WHERE category_id=? ', [$_GET['id']], get_called_class(), false);
-    }
 
+    public function articleByCategorie()
+    {
+        return App::getDB()->query(
+            'SELECT post.id, post.titre, post.message, categories.name as categorie 
+            FROM post 
+            LEFT JOIN categories ON post.category_id = categories.id ',
+            get_called_class(),
+            false
+        );
+    }
+    public static function articleBycategori($categoryId)
+    {
+        // Assurez-vous que la requête SQL est correctement formée
+        $query = 'SELECT post.id, post.titre, post.message, categories.name AS categorie 
+                  FROM post 
+                  LEFT JOIN categories ON post.category_id = categories.id 
+                  WHERE post.category_id = ?';
+
+        // Exécutez la requête et récupérez les résultats
+        return App::getDB()->prepare($query, [$categoryId], get_called_class(), false);
+    }
 }

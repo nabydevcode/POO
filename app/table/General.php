@@ -4,25 +4,24 @@ use App\app\Table\App;
 
 class General
 {
-    private array $data = [];
+    protected static $table;
 
-    public function __set($name, $value)
+    public static function getTable()
     {
-        $this->data[$name] = $value;
-    }
-
-    public function __get($name)
-    {
-        return $this->data[$name] ?? null;
-    }
-    public static function getLastarticle()
-    {
-        if (isset($_GET['id'])) {
-            return App::getDB()->prepare('SELECT * FROM post WHERE id=?', [$_GET['id']], get_called_class(), true);
+        if (isset(static::$table)) {
+            return static::$table;
         } else {
-            return App::getDB()->query('SELECT post.id,post.titre, post.message, categories.name as categorie FROM post LEFT JOIN categories on category_id=categories.id', get_called_class());
+            throw new \Exception("Le nom de la table n'est pas défini.");
         }
-
+    }
+    public static function allOrbyid($attributes = null)
+    {
+        $table = static::getTable();
+        if (isset($attributes)) {
+            return App::getDB()->prepare("SELECT * FROM  " . $table . "  WHERE id=?", [$attributes], get_called_class(), true);
+        } else {
+            return App::getDB()->query("SELECT * FROM " . $table . " ", get_called_class(), false);
+        }
     }
 
 }
