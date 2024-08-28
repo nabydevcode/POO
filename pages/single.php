@@ -1,11 +1,13 @@
 <?php
 use App\app\Table\Articles;
+use App\app\Table\Categorie;
 
 $articles = Articles::allOrbyid($_GET['id']);
 
 ?>
 
 <div class="container">
+
     <h1> Bienvenue sur la page single </h1>
     <h3>
         Titre:
@@ -24,5 +26,12 @@ $articles = Articles::allOrbyid($_GET['id']);
 
     </p>
     <a href="index.php?p=home"> home </a>
+
+
+
+
+
+
+
 
 </div>

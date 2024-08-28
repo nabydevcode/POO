@@ -6,40 +6,41 @@ use App\app\Table\Categorie;
 require('../vendor/autoload.php');
 $db = App::getDB();
 $ar = new Articles();
-
-
-
-
 ?>
 <div class="container">
-    <h1> je suis sur home page </h1>
-    <h2> la liste des articles</h2>
-    <ul>
-        <?php foreach ($ar->articleByCategorie() as $post): ?>
-            <div class="row ">
-                <div class="col-sm-8">
-                    <h2> <a href="<?= $post->getUrl() ?>">
-                            <?= $post->titre ?>
-                        </a></h2>
-                    <p>
-                        <?= ($post->categorie) ?>
-                    </p>
-                    <p>
-                        <?= $post->getExtrait() ?>
-                    </p>
-                <?php endforeach ?>
-                <div class="col-sm-4">
-                    <?php foreach (Categorie::allOrbyid() as $categorie): ?>
-                        <ul>
-                            <li>
-                                <a href="<?= $categorie->getUrl() ?>">
-                                    <?= $categorie->name ?>
-                                </a>
-                            </li>
-                        </ul>
-                    <?php endforeach ?>
-                </div>
-            </div>
+    <h1> Je suis sur la home page </h1>
+    <h2> La liste des articles</h2>
+    <div class="row">
+        <!-- Colonne des articles -->
+        <div class="col-sm-8">
+            <ul>
+                <?php foreach ($ar->articleByCategorie() as $post): ?>
+                    <li>
+                        <h2><a href="<?= $post->getUrl() ?>">
+                                <?= $post->titre ?>
+                            </a></h2>
+                        <p>
+                            <?= $post->categorie ?>
+                        </p>
+                        <p>
+                            <?= $post->getExtrait() ?>
+                        </p>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
 
-    </ul>
+        <!-- Colonne des catégories -->
+        <div class="col-4">
+            <ul>
+                <?php foreach (Categorie::allOrbyid() as $categorie): ?>
+                    <li>
+                        <a href="<?= $categorie->getUrl() ?>">
+                            <?= $categorie->name ?>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    </div>
 </div>

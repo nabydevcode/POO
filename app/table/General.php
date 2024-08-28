@@ -7,6 +7,8 @@ class General
     protected static $table;
 
 
+
+
     public static function getTable()
     {
         if (isset(static::$table)) {
@@ -14,6 +16,11 @@ class General
         } else {
             throw new \Exception("Le nom de la table n'est pas défini.");
         }
+    }
+
+    public static function find($id)
+    {
+        return App::getDB()->prepare("SELECT * FROM " . static::getTable() . " WHERE id=?", [$id], get_called_class(), true);
     }
 
     public static function allOrbyid($attributes = null)
